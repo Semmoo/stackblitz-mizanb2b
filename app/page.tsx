@@ -8,7 +8,8 @@ export default function Home() {
             Mizan Textile
           </h2>
 
-          <nav className="flex gap-8 text-sm font-medium">
+          <nav className="flex items-center gap-6 text-sm font-medium">
+
             <a href="#services" className="hover:text-[#BA2C2C] transition">
               Services
             </a>
@@ -24,6 +25,14 @@ export default function Home() {
             <a href="#contact" className="hover:text-[#BA2C2C] transition">
               Contact
             </a>
+            <a 
+  href="https://mizan.shop" 
+  target="_blank"
+  className="px-4 py-1.5 rounded-md border border-[#BA2C2C] text-[#BA2C2C] text-sm hover:bg-[#BA2C2C] hover:text-white transition"
+>
+  Visit mizan.shop
+</a>
+
           </nav>
         </div>
       </header>
