@@ -1,74 +1,104 @@
+"use client";
+import { useState } from "react";
+
 export default function Home() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <main className="min-h-screen bg-white text-[#1a1a1a] font-sans">
-      {/* ================= HEADER Navbar ================= */}
+    <main id="top" className="min-h-screen bg-white text-[#1a1a1a] font-sans">
+
+      {/* ================= HEADER (NOW RESPONSIVE) ================= */}
       <header className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-          <h2 className="text-xl font-semibold tracking-tight text-[#BA2C2C]">
-            Mizan Underwear
-          </h2>
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
 
-          <nav className="flex items-center gap-6 text-sm font-medium">
-
-            <a href="#services" className="hover:text-[#BA2C2C] transition">
-              Services
-            </a>
-            <a href="#about" className="hover:text-[#BA2C2C] transition">
-              About
-            </a>
-            <a href="#products" className="hover:text-[#BA2C2C] transition">
-              Products
-            </a>
-            <a href="#references" className="hover:text-[#BA2C2C] transition">
-              References
-            </a>
-            <a href="#contact" className="hover:text-[#BA2C2C] transition">
-              Contact
-            </a>
-            <a 
-  href="https://mizan.shop" 
-  target="_blank"
-  className="px-4 py-1.5 rounded-md border border-[#BA2C2C] text-[#BA2C2C] text-sm hover:bg-[#BA2C2C] hover:text-white transition"
->
-  Visit mizan.shop
+          {/* Logo */}
+          <a href="#top" className="text-xl font-semibold tracking-tight text-[#BA2C2C] hover:opacity-80 transition">
+  Mizan Underwear
 </a>
 
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+            <a href="#services" className="hover:text-[#BA2C2C] transition">Services</a>
+            <a href="#about" className="hover:text-[#BA2C2C] transition">About</a>
+            <a href="#products" className="hover:text-[#BA2C2C] transition">Products</a>
+            <a href="#references" className="hover:text-[#BA2C2C] transition">References</a>
+            <a href="#contact" className="hover:text-[#BA2C2C] transition">Contact</a>
+
+            <a
+              href="https://mizan.shop"
+              target="_blank"
+              className="px-4 py-1.5 rounded-md border border-[#BA2C2C] text-[#BA2C2C] hover:bg-[#BA2C2C] hover:text-white transition"
+            >
+              Visit mizan.shop
+            </a>
           </nav>
+
+          {/* ===== MOBILE HAMBURGER ===== */}
+          <button onClick={() => setOpen(!open)} className="md:hidden space-y-1 flex flex-col">
+            <span className={`w-6 h-[3px] bg-[#BA2C2C] rounded transition ${open ? "rotate-45 translate-y-[6px]" : ""}`} />
+            <span className={`w-6 h-[3px] bg-[#BA2C2C] rounded transition ${open ? "opacity-0" : ""}`} />
+            <span className={`w-6 h-[3px] bg-[#BA2C2C] rounded transition ${open ? "-rotate-45 -translate-y-[6px]" : ""}`} />
+          </button>
         </div>
+
+        {/* MOBILE NAVIGATION DROPDOWN */}
+        {open && (
+          <div className="md:hidden flex flex-col gap-4 px-4 py-5 bg-white border-t border-gray-200 text-sm font-medium">
+            <a onClick={() => setOpen(false)} href="#services">Services</a>
+            <a onClick={() => setOpen(false)} href="#about">About</a>
+            <a onClick={() => setOpen(false)} href="#products">Products</a>
+            <a onClick={() => setOpen(false)} href="#references">References</a>
+            <a onClick={() => setOpen(false)} href="#contact">Contact</a>
+
+            <a
+              onClick={() => setOpen(false)}
+              href="https://mizan.shop"
+              target="_blank"
+              className="text-[#BA2C2C] font-semibold"
+            >
+              Visit mizan.shop →
+            </a>
+          </div>
+        )}
       </header>
 
-      {/* ================= HERO SECTION ================= */}
+
+
+      {/* ================= HERO (ONLY RESPONSIVE FIX) ================= */}
       <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            // privremena slika – zamenićemo Mizan fotkom kasnije
             backgroundImage:
               "url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1920&q=80')",
           }}
         />
         <div className="absolute inset-0 bg-black/45" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#BA2C2C]/20 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#BA2C2C]/10 to-black/60" />
 
-        <div className="relative text-center text-white px-6 max-w-3xl mt-16">
-          <h1 className="text-6xl md:text-7xl font-extrabold leading-tight drop-shadow-[0_6px_18px_rgba(0,0,0,0.6)]">
+        <div className="relative text-center text-white px-4 sm:px-6 max-w-3xl mt-32">
+
+          {/* MOBILE font scale ONLY: UI ostaje isti */}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold leading-tight drop-shadow-[0_6px_18px_rgba(0,0,0,0.6)]">
             Premium Underwear Manufacturing
           </h1>
 
-          <p className="text-lg md:text-2xl mt-6 opacity-95 font-light">
+          <p className="text-base sm:text-lg md:text-2xl mt-6 opacity-95">
             OEM & Private Label — Cotton • Lycra • EU Grade Production
           </p>
 
-          <div className="flex justify-center gap-5 mt-10">
+          {/* CTA — stacked only on small screens */}
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center">
             <a
               href="#contact"
-              className="px-10 py-3 bg-[#BA2C2C] hover:bg-[#992224] rounded-md text-lg font-medium shadow-xl transition"
+              className="px-10 py-3 bg-[#BA2C2C] hover:bg-[#992224] rounded-md text-base sm:text-lg font-medium transition shadow-xl"
             >
               Request Offer
             </a>
             <a
               href="#products"
-              className="px-10 py-3 border border-white/85 hover:bg-white hover:text-[#BA2C2C] rounded-md text-lg transition shadow-xl"
+              className="px-10 py-3 border border-white/80 hover:bg-white hover:text-[#BA2C2C] rounded-md text-base sm:text-lg shadow-xl transition"
             >
               View Products
             </a>
@@ -76,97 +106,68 @@ export default function Home() {
         </div>
       </section>
 
+
       {/* ================= SERVICES SECTION ================= */}
-      <section id="services" className="max-w-7xl mx-auto px-6 pt-36 pb-28">
-        <h2 className="text-4xl font-bold text-center text-[#BA2C2C]">
-          Manufacturing Services
-        </h2>
-        <p className="text-gray-600 text-center max-w-2xl mx-auto mt-3 text-lg">
-          Full-cycle underwear manufacturing — cutting, sewing, branding,
-          packaging & export.
-        </p>
+      <section id="services" className="max-w-7xl mx-auto px-4 sm:px-6 pt-28 sm:pt-36 pb-20 sm:pb-28">
+  <h2 className="text-4xl font-bold text-center text-[#BA2C2C]">
+    Manufacturing Services
+  </h2>
+  <p className="text-gray-600 text-center max-w-2xl mx-auto mt-3 text-lg">
+    Full-cycle underwear manufacturing — cutting, sewing, branding,
+    packaging & export.
+  </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 mt-32">
-          <div className="p-8 border rounded-xl hover:shadow-xl transition text-center">
-            <svg
-              width="46"
-              height="46"
-              viewBox="0 0 24 24"
-              stroke="#BA2C2C"
-              fill="none"
-              strokeWidth="1.6"
-              className="mx-auto mb-5"
-            >
-              <path d="M4 4h16v2H4zM4 18h16v2H4zM6 6h12v12H6z" />
-            </svg>
-            <h3 className="text-xl font-semibold">OEM Underwear Production</h3>
-            <p className="text-gray-600 text-sm mt-3">
-              Briefs, boxers, undershirts, sleepwear.
-            </p>
-          </div>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16 mt-20 sm:mt-32">
+    
+    <div className="p-8 border rounded-xl hover:shadow-xl transition text-center">
+      <svg width="46" height="46" viewBox="0 0 24 24" stroke="#BA2C2C" fill="none" strokeWidth="1.6" className="mx-auto mb-5">
+        <path d="M4 4h16v2H4zM4 18h16v2H4zM6 6h12v12H6z"/>
+      </svg>
+      <h3 className="text-xl font-semibold">OEM Underwear Production</h3>
+      <p className="text-gray-600 text-sm mt-3">
+        Briefs, boxers, undershirts, sleepwear.
+      </p>
+    </div>
 
-          <div className="p-8 border rounded-xl hover:shadow-xl transition text-center">
-            <svg
-              width="46"
-              height="46"
-              viewBox="0 0 24 24"
-              stroke="#BA2C2C"
-              fill="none"
-              strokeWidth="1.6"
-              className="mx-auto mb-5"
-            >
-              <path d="M4 4h12l4 4v12H4z" />
-              <path d="M9 10h6M9 14h6" />
-            </svg>
-            <h3 className="text-xl font-semibold">Private Label Branding</h3>
-            <p className="text-gray-600 text-sm mt-3">
-              Labels, packaging, white-label ready.
-            </p>
-          </div>
+    <div className="p-8 border rounded-xl hover:shadow-xl transition text-center">
+      <svg width="46" height="46" viewBox="0 0 24 24" stroke="#BA2C2C" fill="none" strokeWidth="1.6" className="mx-auto mb-5">
+        <path d="M4 4h12l4 4v12H4z"/>
+        <path d="M9 10h6M9 14h6"/>
+      </svg>
+      <h3 className="text-xl font-semibold">Private Label Branding</h3>
+      <p className="text-gray-600 text-sm mt-3">
+        Labels, packaging, white-label ready.
+      </p>
+    </div>
 
-          <div className="p-8 border rounded-xl hover:shadow-xl transition text-center">
-            <svg
-              width="46"
-              height="46"
-              viewBox="0 0 24 24"
-              stroke="#BA2C2C"
-              fill="none"
-              strokeWidth="1.6"
-              className="mx-auto mb-5"
-            >
-              <circle cx="12" cy="12" r="9" />
-              <path d="M7 12h10M12 7v10" />
-            </svg>
-            <h3 className="text-xl font-semibold">Fabric & Quality Control</h3>
-            <p className="text-gray-600 text-sm mt-3">
-              Cotton • Lycra • Modal • verified batches.
-            </p>
-          </div>
+    <div className="p-8 border rounded-xl hover:shadow-xl transition text-center">
+      <svg width="46" height="46" viewBox="0 0 24 24" stroke="#BA2C2C" fill="none" strokeWidth="1.6" className="mx-auto mb-5">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M7 12h10M12 7v10"/>
+      </svg>
+      <h3 className="text-xl font-semibold">Fabric & Quality Control</h3>
+      <p className="text-gray-600 text-sm mt-3">
+        Cotton • Lycra • Modal • verified batches.
+      </p>
+    </div>
 
-          <div className="p-8 border rounded-xl hover:shadow-xl transition text-center">
-            <svg
-              width="46"
-              height="46"
-              viewBox="0 0 24 24"
-              stroke="#BA2C2C"
-              fill="none"
-              strokeWidth="1.6"
-              className="mx-auto mb-5"
-            >
-              <path d="M3 7l9-4 9 4v10l-9 4-9-4z" />
-              <path d="M3 7l9 5 9-5" />
-            </svg>
-            <h3 className="text-xl font-semibold">Packaging & Export</h3>
-            <p className="text-gray-600 text-sm mt-3">
-              Retail-ready, barcodes, EU shipping.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="p-8 border rounded-xl hover:shadow-xl transition text-center">
+      <svg width="46" height="46" viewBox="0 0 24 24" stroke="#BA2C2C" fill="none" strokeWidth="1.6" className="mx-auto mb-5">
+        <path d="M3 7l9-4 9 4v10l-9 4-9-4z"/>
+        <path d="M3 7l9 5 9-5"/>
+      </svg>
+      <h3 className="text-xl font-semibold">Packaging & Export</h3>
+      <p className="text-gray-600 text-sm mt-3">
+        Retail-ready, barcodes, EU shipping.
+      </p>
+    </div>
+
+  </div>
+</section>
 
 {/* ================= ABOUT SECTION ================= */}
-<section id="about" className="bg-[#f8f8f8] py-32">
-  <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+<section id="about" className="bg-[#f8f8f8] py-24 sm:py-32">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-14 sm:gap-20 items-center">
 
     {/* LEFT — COMPANY STORY */}
     <div className="flex flex-col justify-between h-full">
@@ -184,7 +185,6 @@ export default function Home() {
           scalable manufacturing built for European volume standards.
         </p>
 
-        {/* Strong production values */}
         <ul className="space-y-2 text-gray-800 font-medium text-[15px]">
           <li>• 15+ years industry experience</li>
           <li>• OEM & Private Label underwear</li>
@@ -193,69 +193,38 @@ export default function Home() {
         </ul>
       </div>
 
-      <a
-        href="#contact"
-        className="mt-10 w-fit px-10 py-3 bg-[#BA2C2C] hover:bg-[#992224] 
-        text-white font-medium rounded-md shadow-md transition"
-      >
+      <a href="#contact" className="mt-10 w-fit px-8 sm:px-10 py-3 bg-[#BA2C2C] hover:bg-[#992224] text-white font-medium rounded-md shadow-md transition">
         Contact for Production Inquiry
       </a>
     </div>
 
 
-    {/* RIGHT — FACILITIES + CERTIFICATIONS (BALANCED HEIGHT) */}
-    <div className="bg-white shadow-xl rounded-xl p-10 flex flex-col justify-between h-full">
+    {/* RIGHT — FACILITIES + CERTIFICATIONS */}
+    <div className="bg-white shadow-xl rounded-xl p-8 sm:p-10 flex flex-col justify-between h-full">
 
-      {/* LOCATIONS */}
-      <div>
-        <p className="text-[#BA2C2C] font-semibold text-lg mb-6">
-          Production Facilities • Serbia
-        </p>
+      {/* locations */}
+      <p className="text-[#BA2C2C] font-semibold text-lg mb-6">
+        Production Facilities • Serbia
+      </p>
 
-        <div className="grid grid-cols-2 gap-y-5 text-[15px] text-gray-700">
-          <div className="flex items-start gap-2">
-            <span className="text-[#BA2C2C] text-lg">📍</span>
-            <p><strong>Novi Pazar (HQ)</strong><br/><span className="text-xs opacity-80">Main production hub</span></p>
-          </div>
-
-          <div className="flex items-start gap-2">
-            <span className="text-[#BA2C2C] text-lg">📍</span>
-            <p><strong>Sjenica</strong><br/><span className="text-xs opacity-80">Stitching • Finishing</span></p>
-          </div>
-
-          <div className="flex items-start gap-2">
-            <span className="text-[#BA2C2C] text-lg">📍</span>
-            <p><strong>Ivanjica</strong><br/><span className="text-xs opacity-80">Knitwear & Underwear Lines</span></p>
-          </div>
-
-          <div className="flex items-start gap-2">
-            <span className="text-[#BA2C2C] text-lg">📍</span>
-            <p><strong>Zrenjanin</strong><br/><span className="text-xs opacity-80">Packaging & Export Dispatch</span></p>
-          </div>
-        </div>
+      <div className="grid grid-cols-2 gap-y-5 text-[15px] text-gray-700">
+        <div><strong>Novi Pazar (HQ)</strong><br/><span className="text-xs opacity-80">Main production hub</span></div>
+        <div><strong>Sjenica</strong><br/><span className="text-xs opacity-80">Stitching • Finishing</span></div>
+        <div><strong>Ivanjica</strong><br/><span className="text-xs opacity-80">Knitwear & Underwear Lines</span></div>
+        <div><strong>Zrenjanin</strong><br/><span className="text-xs opacity-80">Packaging & Export Dispatch</span></div>
       </div>
 
-
-      {/* CERTIFICATIONS BLOCK — hybrid style */}
       <div className="mt-10 border-t pt-8">
         <p className="text-sm font-semibold tracking-wide text-gray-600 mb-5">
           Certifications & Compliance
         </p>
 
-        <div className="grid grid-cols-2 gap-4 text-[14px] text-gray-800">
-          <div className="flex items-center gap-2">
-            <span className="text-[#BA2C2C] text-lg">🔰</span> OEKO-TEX® Standard 100
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-[#BA2C2C] text-lg">🔰</span> ISO 9001 Certified
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-[#BA2C2C] text-lg">🔰</span> BSCI Compliant Manufacturing
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-[#BA2C2C] text-lg">🔰</span> REACH-Approved Fabrics
-          </div>
-        </div>
+        <ul className="grid grid-cols-2 gap-4 text-[14px] text-gray-800">
+          <li>🔰 OEKO-TEX® Standard 100</li>
+          <li>🔰 ISO 9001 Certified</li>
+          <li>🔰 BSCI Compliant Manufacturing</li>
+          <li>🔰 REACH-Approved Fabrics</li>
+        </ul>
       </div>
 
     </div>
@@ -270,193 +239,141 @@ export default function Home() {
 
 
 
-      {/* ================= PRODUCTS SECTION ================= */}
-      <section id="products" className="py-40 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          {/* Heading */}
-          <div className="text-center mb-24">
-            <span className="block w-14 h-[3px] bg-[#BA2C2C] mx-auto mb-6" />
-            <h2 className="text-4xl font-bold text-[#BA2C2C]">
-              Product Portfolio
-            </h2>
-            <p className="text-gray-600 mt-4 max-w-xl mx-auto text-lg">
-              Core underwear categories manufactured for EU brands — OEM &
-              private label.
-            </p>
-          </div>
+{/* ================= PRODUCTS SECTION ================= */}
+<section id="products" className="py-32 sm:py-40 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
-          {/* Product Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 mb-20">
-            {/* Ovdje su placeholderi – sve radi isto kao ranije */}
-            {/* 6 kartica */}
-            {/* 1 */}
-            <div className="rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group">
-              <div
-                className="h-64 bg-cover bg-center group-hover:scale-[1.05] transition-transform"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80')",
-                }}
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-[#BA2C2C]">
-                  Men’s Cotton Briefs
-                </h3>
-                <p className="text-gray-600 text-sm mt-2">
-                  100% cotton, reinforced elastic waist
-                </p>
-              </div>
-            </div>
+    {/* Heading */}
+    <div className="text-center mb-20 sm:mb-24">
+      <span className="block w-14 h-[3px] bg-[#BA2C2C] mx-auto mb-6" />
+      <h2 className="text-4xl font-bold text-[#BA2C2C]">
+        Product Portfolio
+      </h2>
+      <p className="text-gray-600 mt-4 max-w-xl mx-auto text-lg">
+        Core underwear categories manufactured for EU brands — OEM & private label.
+      </p>
+    </div>
 
-            {/* 2 */}
-            <div className="rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group">
-              <div
-                className="h-64 bg-cover bg-center group-hover:scale-[1.05] transition-transform"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1595435934244-29c3fe4c68f9?auto=format&fit=crop&w=800&q=80')",
-                }}
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-[#BA2C2C]">
-                  Men’s Boxer Shorts
-                </h3>
-                <p className="text-gray-600 text-sm mt-2">
-                  Soft cotton–Lycra blend for comfort stretch
-                </p>
-              </div>
-            </div>
+    {/* Products Grid */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14 sm:gap-20 mb-20">
 
-            {/* 3 */}
-            <div className="rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group">
-              <div
-                className="h-64 bg-cover bg-center group-hover:scale-[1.05] transition-transform"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1627591082901-163cd5a93c59?auto=format&fit=crop&w=800&q=80')",
-                }}
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-[#BA2C2C]">
-                  Women’s Underwear
-                </h3>
-                <p className="text-gray-600 text-sm mt-2">
-                  Soft-touch waistbands • seamless edges
-                </p>
-              </div>
-            </div>
-
-            {/* 4 */}
-            <div className="rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group">
-              <div
-                className="h-64 bg-cover bg-center group-hover:scale-[1.05] transition-transform"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1626127653168-8b614232e9ae?auto=format&fit=crop&w=800&q=80')",
-                }}
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-[#BA2C2C]">
-                  Cotton Undershirts
-                </h3>
-                <p className="text-gray-600 text-sm mt-2">
-                  Lightweight breathable knit fabric
-                </p>
-              </div>
-            </div>
-
-            {/* 5 */}
-            <div className="rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group">
-              <div
-                className="h-64 bg-cover bg-center group-hover:scale-[1.05] transition-transform"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=800&q=80')",
-                }}
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-[#BA2C2C]">
-                  Modal Sleepwear
-                </h3>
-                <p className="text-gray-600 text-sm mt-2">
-                  Ultra-soft drape, durable long-wear
-                </p>
-              </div>
-            </div>
-
-            {/* 6 */}
-            <div className="rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group">
-              <div
-                className="h-64 bg-cover bg-center group-hover:scale-[1.05] transition-transform"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1624124680565-08d4f6c747c5?auto=format&fit=crop&w=800&q=80')",
-                }}
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-[#BA2C2C]">
-                  Sports Performance Line
-                </h3>
-                <p className="text-gray-600 text-sm mt-2">
-                  Sweat-wicking stretch microfibers
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA BUTTONS */}
-          <div className="text-center flex flex-col sm:flex-row items-center justify-center gap-5">
-            <a
-              href="/catalogue.pdf"
-              className="px-10 py-3 rounded-md bg-[#BA2C2C] text-white font-medium hover:bg-[#8f1f21] transition shadow-md"
-            >
-              Download Catalogue
-            </a>
-
-            <a
-              href="https://mizan.shop"
-              className="px-10 py-3 rounded-md border border-[#BA2C2C] text-[#BA2C2C] font-medium hover:bg-[#BA2C2C] hover:text-white transition shadow-md"
-            >
-              Visit mizan.shop
-            </a>
-          </div>
+      {/* ITEM 1 */}
+      <div className="rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group">
+        <div className="h-64 bg-cover bg-center group-hover:scale-[1.05] transition-transform"
+             style={{ backgroundImage:"url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80')" }} />
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-[#BA2C2C]">Men’s Cotton Briefs</h3>
+          <p className="text-gray-600 text-sm mt-2">100% cotton, reinforced elastic waist</p>
         </div>
-      </section>
+      </div>
 
-      {/* ================= REFERENCES / TRUSTED BY ================= */}
-      <section id="references" className="py-36 bg-[#fafafa]">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-sm font-medium text-gray-500 tracking-[0.18em] uppercase">
-            Trusted by European apparel brands
-          </p>
-          <span className="block w-10 h-[2px] bg-[#BA2C2C] mx-auto mt-4 mb-16" />
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-10">
-            <div className="flex items-center justify-center h-12 rounded-md border border-gray-200 bg-white text-xs font-semibold text-gray-500">
-              Brand One
-            </div>
-            <div className="flex items-center justify-center h-12 rounded-md border border-gray-200 bg-white text-xs font-semibold text-gray-500">
-              Brand Two
-            </div>
-            <div className="flex items-center justify-center h-12 rounded-md border border-gray-200 bg-white text-xs font-semibold text-gray-500">
-              Brand Three
-            </div>
-            <div className="flex items-center justify-center h-12 rounded-md border border-gray-200 bg-white text-xs font-semibold text-gray-500">
-              Brand Four
-            </div>
-            <div className="flex items-center justify-center h-12 rounded-md border border-gray-200 bg-white text-xs font-semibold text-gray-500">
-              Brand Five
-            </div>
-            <div className="flex items-center justify-center h-12 rounded-md border border-gray-200 bg-white text-xs font-semibold text-gray-500">
-              Brand Six
-            </div>
-          </div>
+      {/* ITEM 2 */}
+      <div className="rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group">
+        <div className="h-64 bg-cover bg-center group-hover:scale-[1.05] transition-transform"
+             style={{ backgroundImage:"url('https://images.unsplash.com/photo-1595435934244-29c3fe4c68f9?auto=format&fit=crop&w=800&q=80')" }} />
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-[#BA2C2C]">Men’s Boxer Shorts</h3>
+          <p className="text-gray-600 text-sm mt-2">Soft cotton–Lycra blend for comfort stretch</p>
         </div>
-      </section>
+      </div>
 
-      {/* ================= CONTACT SECTION ================= */}
-<section id="contact" className="py-28 bg-white">
-  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 px-6">
+      {/* ITEM 3 */}
+      <div className="rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group">
+        <div className="h-64 bg-cover bg-center group-hover:scale-[1.05] transition-transform"
+             style={{ backgroundImage:"url('https://images.unsplash.com/photo-1627591082901-163cd5a93c59?auto=format&fit=crop&w=800&q=80')" }} />
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-[#BA2C2C]">Women’s Underwear</h3>
+          <p className="text-gray-600 text-sm mt-2">Soft-touch waistbands • seamless edges</p>
+        </div>
+      </div>
+
+      {/* ITEM 4 */}
+      <div className="rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group">
+        <div className="h-64 bg-cover bg-center group-hover:scale-[1.05] transition-transform"
+             style={{ backgroundImage:"url('https://images.unsplash.com/photo-1626127653168-8b614232e9ae?auto=format&fit=crop&w=800&q=80')" }} />
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-[#BA2C2C]">Cotton Undershirts</h3>
+          <p className="text-gray-600 text-sm mt-2">Lightweight breathable knit fabric</p>
+        </div>
+      </div>
+
+      {/* ITEM 5 */}
+      <div className="rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group">
+        <div className="h-64 bg-cover bg-center group-hover:scale-[1.05] transition-transform"
+             style={{ backgroundImage:"url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=800&q=80')" }} />
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-[#BA2C2C]">Modal Sleepwear</h3>
+          <p className="text-gray-600 text-sm mt-2">Ultra-soft drape, durable long-wear</p>
+        </div>
+      </div>
+
+      {/* ITEM 6 */}
+      <div className="rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group">
+        <div className="h-64 bg-cover bg-center group-hover:scale-[1.05] transition-transform"
+             style={{ backgroundImage:"url('https://images.unsplash.com/photo-1624124680565-08d4f6c747c5?auto=format&fit=crop&w=800&q=80')" }} />
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-[#BA2C2C]">Sports Performance Line</h3>
+          <p className="text-gray-600 text-sm mt-2">Sweat-wicking stretch microfibers</p>
+        </div>
+      </div>
+
+    </div>
+
+    {/* CTA BUTTONS */}
+    <div className="text-center flex flex-col sm:flex-row items-center justify-center gap-5">
+      <a href="/catalogue.pdf" className="px-10 py-3 rounded-md bg-[#BA2C2C] text-white font-medium hover:bg-[#8f1f21] transition shadow-md">
+        Download Catalogue
+      </a>
+
+      <a href="https://mizan.shop" className="px-10 py-3 rounded-md border border-[#BA2C2C] text-[#BA2C2C] font-medium hover:bg-[#BA2C2C] hover:text-white transition shadow-md">
+        Visit mizan.shop
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+
+{/* ================= REFERENCES / TRUSTED BY ================= */}
+<section id="references" className="py-32 bg-[#fafafa]">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+
+    <p className="text-sm font-medium text-gray-500 tracking-[0.18em] uppercase">
+      Trusted by European apparel brands
+    </p>
+    <span className="block w-10 h-[2px] bg-[#BA2C2C] mx-auto mt-4 mb-14" />
+
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 sm:gap-10">
+
+      <div className="flex items-center justify-center h-12 rounded-md border border-gray-200 bg-white text-xs font-semibold text-gray-500">
+        Brand One
+      </div>
+      <div className="flex items-center justify-center h-12 rounded-md border border-gray-200 bg-white text-xs font-semibold text-gray-500">
+        Brand Two
+      </div>
+      <div className="flex items-center justify-center h-12 rounded-md border border-gray-200 bg-white text-xs font-semibold text-gray-500">
+        Brand Three
+      </div>
+      <div className="flex items-center justify-center h-12 rounded-md border border-gray-200 bg-white text-xs font-semibold text-gray-500">
+        Brand Four
+      </div>
+      <div className="flex items-center justify-center h-12 rounded-md border border-gray-200 bg-white text-xs font-semibold text-gray-500">
+        Brand Five
+      </div>
+      <div className="flex items-center justify-center h-12 rounded-md border border-gray-200 bg-white text-xs font-semibold text-gray-500">
+        Brand Six
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+{/* ================= CONTACT SECTION ================= */}
+<section id="contact" className="py-24 sm:py-28 bg-white">
+  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20 px-4 sm:px-6">
 
     {/* LEFT — FORM */}
     <div>
@@ -470,49 +387,64 @@ export default function Home() {
       </p>
 
       <form className="space-y-5">
-        <input type="text" placeholder="Full Name"
-          className="w-full p-3 border rounded-md focus:ring-2 ring-[#BA2C2C]" />
-        <input type="email" placeholder="Email"
-          className="w-full p-3 border rounded-md focus:ring-2 ring-[#BA2C2C]" />
-        <input type="text" placeholder="Company (optional)"
-          className="w-full p-3 border rounded-md focus:ring-2 ring-[#BA2C2C]" />
-        <textarea rows={6} placeholder="Production details, order size, fabrics..."
-          className="w-full p-3 border rounded-md focus:ring-2 ring-[#BA2C2C]" />
+        <input
+          type="text"
+          placeholder="Full Name"
+          className="w-full p-3 border rounded-md focus:ring-2 ring-[#BA2C2C]"
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full p-3 border rounded-md focus:ring-2 ring-[#BA2C2C]"
+        />
+        <input
+          type="text"
+          placeholder="Company (optional)"
+          className="w-full p-3 border rounded-md focus:ring-2 ring-[#BA2C2C]"
+        />
+        <textarea
+          rows={6}
+          placeholder="Production details, order size, fabrics..."
+          className="w-full p-3 border rounded-md focus:ring-2 ring-[#BA2C2C]"
+        />
 
         <button
-          className="px-12 py-3 bg-[#BA2C2C] text-white font-medium rounded-md 
-                     hover:bg-[#8f1f21] transition shadow-lg">
+          className="px-12 py-3 bg-[#BA2C2C] text-white font-medium rounded-md hover:bg-[#8F1F21] transition shadow-lg"
+        >
           Send Inquiry
         </button>
       </form>
     </div>
 
 
-    {/* RIGHT — CONTACT INFO + MAP balanced */}
+    {/* RIGHT — CONTACT INFO + MAP */}
     <div className="flex flex-col justify-between">
 
-      {/* Contact */}
       <div className="mb-10">
         <h3 className="text-lg font-semibold text-gray-700 mb-2">Business Contact</h3>
         <p className="text-gray-700 leading-7">
-          <strong>Email:</strong> info@mizantextile.com <br/>
-          <strong>Phone:</strong> +381 XX XXX XXX <br/>
+          <strong>Email:</strong> info@mizantextile.com <br />
+          <strong>Phone:</strong> +381 XX XXX XXX <br />
           <strong>Production:</strong> orders@mizantextile.com
         </p>
       </div>
 
-      {/* MAP — taller to match left column height */}
+      {/* RESPONSIVE MAP */}
       <iframe
         src="https://www.openstreetmap.org/export/embed.html?bbox=20.507%2C43.140%2C20.580%2C43.170&layer=mapnik&marker=43.155%2C20.545"
-        className="w-full h-[420px] rounded-xl shadow-md border"
-      />
+        className="w-full h-72 sm:h-[420px] rounded-xl shadow-md border"
+      ></iframe>
+
     </div>
 
   </div>
 </section>
+
+
+
 {/* ================= FOOTER ================= */}
 <footer className="w-full bg-[#f8f8f8] border-t border-gray-200 mt-24">
-  <div className="max-w-6xl mx-auto py-16 px-6 md:px-0 grid grid-cols-1 md:grid-cols-3 gap-12">
+  <div className="max-w-6xl mx-auto py-14 sm:py-16 px-6 md:px-0 grid grid-cols-1 md:grid-cols-3 gap-12">
 
     {/* Brand/About */}
     <div>
@@ -553,9 +485,10 @@ export default function Home() {
   </div>
 
   <div className="border-t border-gray-300 py-4 text-center text-xs text-gray-500">
-    © {new Date().getFullYear()} Mizan Textile. All rights reserved.
+    © {new Date().getFullYear()} Mizan Underwear. All rights reserved.
   </div>
 </footer>
+
 
 
 
